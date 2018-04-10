@@ -17,7 +17,7 @@ function CreateCustomer()
  if (objRequest.readyState == 4 && objRequest.status == 200)
  {
  var result = JSON.parse(objRequest.responseText);
- OperationResult(result);
+ OperationResult1(result);
  }
  }
 
@@ -27,7 +27,7 @@ function CreateCustomer()
  objRequest.send(newcustomer);
 
 }
-function OperationResult(output)
+function OperationResult1(output)
 {
  if (output.WasSuccessful == 1)
  {
@@ -88,7 +88,7 @@ function UpdateAddress()
  if (objRequest.readyState == 4 && objRequest.status == 200)
  {
  var result = JSON.parse(objRequest.responseText);
- OperationResult(result);
+ OperationResult2(result);
  }
  }
 
@@ -97,15 +97,15 @@ function UpdateAddress()
  objRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
  objRequest.send(newaddress);
 }
-function OperationResult(output)
+function OperationResult2(output2)
 {
- if (output.WasSuccessful == 1)
+ if (output2.WasSuccessful == 1)
  {
- document.getElementById("statuscode").innerHTML = "The operation was successful!"
+ document.getElementById("statuscode").innerHTML = "The operation was successful!";
  }
  else
  {
- document.getElementById("statuscode").innerHTML = "The operation was not successful!" + "<br>" + output.Exception;
+ document.getElementById("statuscode").innerHTML = "The operation was not successful!";
  }
 }
 
@@ -115,32 +115,34 @@ function DeleteCustomer()
  var url = "https://student.business.uab.edu/jsonwebservice/service1.svc/deleteCustomer/";
  url +=document.getElementById("customerdel").value;
  var delcust = document.getElementById("customerdel").value;
- 
- //Collect Customer data from web page
-objRequest.onreadystatechange = function()
+
+
+ //Checking for AJAx operation return
+ objRequest.onreadystatechange = function()
  {
  if (objRequest.readyState == 4 && objRequest.status == 200)
  {
-  var result = JSON.parse(objRequest.responseText);
+ var result3 = JSON.parse(objRequest.responseText);
+ OperationResult3(result3);
  }
  }
 
- //Initiate the server request
+ //Start AJAX request
  objRequest.open("GET", url, true);
  objRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
  objRequest.send(delcust);
+
 }
-function OperationResult(result)
+function OperationResult3(output3)
 {
- if (result.DeleteCustomerResult.WasSuccessful  == 1)
+ if (output3.WasSuccessful == 1)
  {
  document.getElementById("delresult").innerHTML = "The operation was successful!"
  }
  else
  {
- document.getElementById("delresult").innerHTML = "The operation was not successful!" + "<br>" + result.Exception;
+ document.getElementById("delresult").innerHTML = "The operation was not successful!";
  }
 }
+ 
 
- 
- 
