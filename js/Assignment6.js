@@ -137,11 +137,11 @@ function OperationResult3(output3)
 {
  if (output3.WasSuccessful == 1)
  {
- document.getElementById("delresult").innerHTML = "The operation was successful!"
+ document.getElementById("delresult").innerHTML = "The operation was successful!";
  }
- else
+ else (output3.WasSuccessful == 0)
  {
- document.getElementById("delresult").innerHTML = "The operation was not successful!";
+  document.getElementById("delresult").innerHTML = "The operation was successful!";
  }
 }
  
